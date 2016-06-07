@@ -11,18 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605133622) do
+ActiveRecord::Schema.define(version: 20160606025626) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "college"
+  end
 
   create_table "links", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "category_id"
-    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.integer  "category_id"
   end
 
-  add_index "links", ["user_id"], name: "index_links_on_user_id"
+  add_index "links", ["user_id", "category_id"], name: "index_links_on_user_id_and_category_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
