@@ -7,10 +7,11 @@ class LinksController < ApplicationController
   def index
     if !session[:temp_category].nil?
       $category_id  = session[:temp_category]
+      @category = Category.find_by({id: $category_id})
     end
     if Link.exists?(category_id: $category_id)
       @links = Link.where({category_id: $category_id})
-      puts @links
+      @category = Category.find_by({id: $category_id})
     end
     session[:temp_category] = nil
   end
@@ -18,6 +19,8 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
   def show
+    @category = Category.find_by({id: $category_id})
+    puts @category
   end
 
   # GET /links/new

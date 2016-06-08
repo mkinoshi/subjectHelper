@@ -1,27 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Categories</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<h1>Course List</h1>
     <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td><%= link_to 'Show', category %></td>
-        <% if category.user == current_user %>
-          <td><%= link_to 'Edit', edit_category_path(category) %></td>
-          <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+      <div class="link row clearfix">
+        <div class="actual_content">
+        <h2> <%= link_to category.name, category %></h2></br>
+        </div>
+        <% if current_user != category.user %>
+        <div class="btn-group">
+          <%= link_to 'Edit', edit_category_path(category), class: "btn btn-default btn-small"%>
+          <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+        </div>
+      <% end %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+ <%= link_to 'New Course', new_category_path %>
 
 

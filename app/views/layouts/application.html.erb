@@ -13,11 +13,11 @@
 <% end %>
 
 <header>
+<div class="header container">
 	<h1><%= link_to "Subject Helper", root_url %></h1>
 	<nav> 
 		<% if user_signed_in? %>
 			<ul>
-				<li><%= link_to "Submit_link", new_link_path %></li>
 				<li><%= link_to "Account", edit_user_registration_path %></li>
 				<li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
 			</ul>
@@ -28,9 +28,18 @@
 			</ul>
 		<% end %>
 	</nav>
+</div>
 </header>	
 
-<%= yield %>
+<div id="main_content" class="container">
+	<% flash.each do |name, msg| %>
+			<% content_tag(:div, msg, class: "alert alert~%(name)") %>
+	<% end %>
+	<div id="content">
+		<%= yield %> 
+	</div>
+</div>
+
 
 </body>
 </html>

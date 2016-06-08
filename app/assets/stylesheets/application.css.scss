@@ -13,10 +13,25 @@
  *= require_tree .
  *= require_self
  */
- body {
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.header.container {
+	width: 1170px;
+	padding: 0;
+}
+.navbar-inner {
+	background-color: #DCE3E8;
+}
+
+.navbar-brand {
+	padding-left: 0;
+}
+
+body {
  	margin: 0px;
   	padding: 0px;
-  	background-color: #1DD864;
+  	background-color: #E1E8EE;
  }
 header {
     text-align: justify;
@@ -62,3 +77,39 @@ li a {
 	text-decoration: none;
 }
 
+.content-info {
+	padding-left: 0;
+}
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.actual_content {
+	padding-left: 50px;
+}
+
+.navbar-brand a {
+	color: black;
+	font-size: 18px;
+}
+
+.panel.body {
+	padding-left: 20px;
+}
+
+.panel.footer {
+	padding-left: 20px;
+}
+
+.simple_form.new_comment {
+	margin-left : auto;
+	margin-right: auto;
+}
+.btn {
+	font-size: 10px;
+}
+.btn-default {
+	background-color: #147EE8;
+}

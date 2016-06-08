@@ -1,31 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Links</h1>
 
 <table>
+  <h2 class="sub_title"><%= @category.name  %></h2><br/>
+  <%= link_to 'New Link', new_link_path(:category_id =>  @c_id) %>
   <% if !@links.nil? %>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Content</th>
-        <th>Comment numer</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-        <% @links.each do |link| %>
-          <tr>
-            <td><%= link.title %></td>
-            <td><%= link.content %></td>
-            <td><%= link.category_id %></td>
-            <td><%= link_to 'Show', link %></td>
-            <% if link.user == current_user %>
-              <td><%= link_to 'Edit', edit_link_path(link) %></td>
-              <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-          </tr>
-        <% end %>
+      <% @links.each do |link| %>
+        <div class="link row clearfix">
+           <div class="actual_content">
+            <h2><%= link_to link.title, link %></h2>
+              <div class="content-info">
+                <small class="author">Submitted by <%= link.user.email %></small>
+              <% if link.user == current_user %>
+              <div class="btn-group">
+                <%= link_to 'Edit', edit_link_path(link), class: "btn btn-default btn-small" %>
+                <%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default"%>
+              </div>
+              <% end %>
+              </div>
+          </div>
+        </div>
+      <% end %>
     <% else %>
         <h2>Create a new post</h2>
       
@@ -35,4 +30,5 @@
 
 <br>
 <h3><%= @c_id %></h3>
-<%= link_to 'New Link', new_link_path(:category_id =>  @c_id) %>
+
+
